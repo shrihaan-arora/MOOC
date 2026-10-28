@@ -1,0 +1,298 @@
+/**
+ * Dedicated Pushdown Stack Visualizer Styles
+ * Features 3D/glassmorphic depth, animations, and highlighted bottom marker
+ */
+
+.stack-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.stack-info-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-app);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.8rem;
+}
+
+.stack-metric {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stack-metric .label {
+  color: var(--text-dim);
+}
+
+.stack-metric .value {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.text-accent {
+  color: #60a5fa !important;
+}
+
+.text-amber {
+  color: var(--amber) !important;
+}
+
+.text-dim {
+  color: var(--text-dim) !important;
+}
+
+/* Stack Vertical Chamber */
+.stack-chamber {
+  position: relative;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.7), rgba(30, 41, 59, 0.9));
+  border: 2px solid #334155;
+  border-top: none; /* Open at top like a real stack cylinder! */
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  padding: 24px 14px 14px 14px;
+  min-height: 280px;
+  max-height: 420px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Stack items sit at the bottom */
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.5), 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Alert Banners inside stack chamber */
+.stack-alert-banner {
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: slide-in-down 0.3s ease-out;
+}
+
+.alert-cleanup {
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid var(--amber);
+  color: #fde68a;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+}
+
+.alert-bottom-exposed {
+  background: rgba(168, 85, 247, 0.25);
+  border: 1px solid var(--purple);
+  color: #e9d5ff;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.35);
+  animation: pulse-purple 1.5s infinite alternate;
+}
+
+@keyframes pulse-purple {
+  0% { box-shadow: 0 0 8px rgba(168, 85, 247, 0.2); }
+  100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.6); }
+}
+
+/* Empty Stack State */
+.stack-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  border: 2px dashed #334155;
+  border-radius: var(--radius-md);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 2.2rem;
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.empty-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.empty-desc {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  max-width: 260px;
+  line-height: 1.35;
+}
+
+/* Stack Items List */
+.stack-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.stack-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: stack-drop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes stack-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.stack-item .item-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.item-index {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  min-width: 28px;
+}
+
+.item-symbol {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  min-width: 32px;
+}
+
+.item-tag {
+  margin-left: auto;
+  font-size: 0.7rem;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.tag-symbol {
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.35);
+}
+
+.tag-start {
+  background: rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.tag-bottom {
+  background: rgba(168, 85, 247, 0.25);
+  color: #e9d5ff;
+  border: 1px solid rgba(168, 85, 247, 0.5);
+}
+
+/* TOP Pointer */
+.stack-top-pointer {
+  position: absolute;
+  left: -22px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  z-index: 5;
+  animation: pointer-bounce 1s infinite alternate ease-in-out;
+}
+
+.pointer-arrow {
+  font-size: 1.1rem;
+}
+
+.pointer-badge {
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 5px;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 0 8px var(--primary-glow);
+  letter-spacing: 0.05em;
+}
+
+@keyframes pointer-bounce {
+  0% { transform: translateY(-50%) translateX(0); }
+  100% { transform: translateY(-50%) translateX(4px); }
+}
+
+/* Top item visual emphasis */
+.stack-item.is-top {
+  border-color: var(--primary);
+  box-shadow: 0 0 10px var(--primary-glow);
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.15), var(--bg-surface));
+}
+
+/* Bottom Marker ⊥ Special Highlighting */
+.stack-item.is-bottom-marker {
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.2), rgba(30, 41, 59, 0.95));
+  border-color: var(--purple);
+  box-shadow: 0 0 12px var(--purple-glow);
+}
+
+.stack-item.is-bottom-marker .item-symbol {
+  color: #e9d5ff;
+  text-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
+}
+
+/* Start symbol Z0 styling */
+.stack-item.is-start-symbol {
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+/* Cleanup animation in qc */
+.stack-item.is-cleaning {
+  border-color: var(--amber);
+  animation: clean-pulse 1s infinite ease-in-out;
+}
+
+@keyframes clean-pulse {
+  0%, 100% { background: rgba(245, 158, 11, 0.1); }
+  50% { background: rgba(245, 158, 11, 0.25); }
+}
+
+/* Base Plate */
+.stack-baseplate {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: linear-gradient(180deg, #334155, #1e293b);
+  border: 1px solid #475569;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+}
